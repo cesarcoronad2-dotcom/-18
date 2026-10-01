@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#111014">
+  <meta name="description" content="Dados para Dos: juego íntimo para parejas adultas 18+, con tres intensidades, poses y turnos opcionales.">
+  <meta property="og:title" content="Dados para Dos">
+  <meta property="og:description" content="Juego para parejas 18+. Elijan la intensidad, cambien o pasen cualquier resultado.">
+  <meta property="og:type" content="website">
+  <title>Dados para Dos — Juego para parejas 18+</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
+  <main class="app-shell">
+    <section class="screen active" id="home-screen" aria-labelledby="home-title">
+      <div class="home-mark"><img src="assets/logo.svg" alt="" width="48" height="48"><span>EXPERIENCIA PRIVADA PARA PAREJAS</span></div>
+      <div class="hero-copy"><p class="eyebrow">INTENSIDAD A SU PROPIO RITMO</p><h1 id="home-title">DADOS<br><em>PARA DOS</em></h1><p class="hero-subtitle">Juego para parejas 18+<br>Dos dados. Una nueva tensión.</p>
+        <div class="adult-note"><span aria-hidden="true">18+</span><span>Solo para adultos.<br>El consentimiento marca el ritmo.</span></div>
+        <button class="button button-primary button-wide" id="start-button">Comenzar <span aria-hidden="true">↗</span></button>
+        <button class="button button-text" id="how-button">Cómo jugar <span aria-hidden="true">↓</span></button>
+      </div>
+      <footer class="home-footer"><span>Hecho para compartir, a su propio ritmo.</span><span>Sin cuentas · Sin prisa · Siempre consensuado</span></footer>
+    </section>
+
+    <section class="screen" id="consent-screen" aria-labelledby="consent-title" hidden>
+      <div class="dialog-card"><div class="step-tag">ANTES DE EMPEZAR · 01</div><div class="dialog-icon" aria-hidden="true">✦</div><h2 id="consent-title">A su ritmo,<br><em>siempre.</em></h2>
+        <p>Este juego está pensado para dos adultos. Ambos pueden pasar cualquier turno, cambiar un resultado o detener el juego en cualquier momento.</p>
+        <p class="quiet-copy">El azar sugiere; ustedes deciden. Hablen, rían y elijan lo que les haga sentir bien.</p>
+        <button class="button button-primary button-wide" id="consent-button">Acepto y continuar <span aria-hidden="true">→</span></button>
+        <button class="button button-text" data-go="home-screen">Volver</button>
+      </div>
+    </section>
+
+    <section class="screen" id="setup-screen" aria-labelledby="setup-title" hidden>
+      <div class="setup-card"><div class="step-tag">PREPAREN SU MOMENTO · 02</div><h2 id="setup-title">¿Cómo les<br><em>gustaría jugar?</em></h2>
+        <div class="field-row"><label class="field"><span>JUGADOR 1</span><input id="player-one-input" maxlength="18" value="Jugador 1" autocomplete="off"></label><span class="versus">&</span><label class="field"><span>JUGADOR 2</span><input id="player-two-input" maxlength="18" value="Jugador 2" autocomplete="off"></label></div>
+        <fieldset class="mode-picker"><legend>ELIJAN LA INTENSIDAD</legend>
+          <label class="mode-option"><input type="radio" name="mode" value="coqueto" checked><span class="mode-card"><span class="mode-symbol" aria-hidden="true"><span>🔥</span></span><b>Coqueto</b><small>Sensual y sugerente</small></span></label>
+          <label class="mode-option"><input type="radio" name="mode" value="picante"><span class="mode-card"><span class="mode-symbol" aria-hidden="true"><span>🔥</span><span>🔥</span></span><b>Picante</b><small>Contacto y tensión</small></span></label>
+          <label class="mode-option"><input type="radio" name="mode" value="intenso"><span class="mode-card"><span class="mode-symbol" aria-hidden="true"><span>🔥</span><span>🔥</span><span>🔥</span></span><b>Intenso</b><small>Atrevido, siempre acordado</small></span></label>
+          <label class="mode-option"><input type="radio" name="mode" value="custom"><span class="mode-card"><span class="mode-symbol" aria-hidden="true">✎</span><b>A medida</b><small>Sus propias opciones</small></span></label>
+        </fieldset>
+        <button class="button button-primary button-wide" id="setup-continue">Continuar <span aria-hidden="true">→</span></button><button class="button button-text" data-go="consent-screen">Atrás</button>
+      </div>
+    </section>
+
+    <section class="screen" id="custom-screen" aria-labelledby="custom-title" hidden>
+      <div class="custom-card"><div class="step-tag">SU JUEGO, SUS REGLAS · 03</div><h2 id="custom-title">Personalicen<br><em>su experiencia.</em></h2><p class="section-intro">Ajusten acciones, zonas, poses y duración. Cada fila numerada forma una propuesta compatible: Acción 1 con Zona 1 y Pose 1. Se guarda solo en este dispositivo.</p>
+        <div class="custom-columns"><fieldset><legend>ACCIONES</legend><div id="action-fields"></div></fieldset><fieldset><legend>ZONAS</legend><div id="zone-fields"></div></fieldset><fieldset><legend>POSES</legend><div id="pose-fields"></div></fieldset></div>
+        <label class="field duration-custom"><span>DURACIÓN DE SUS RETOS · SEGUNDOS</span><input type="number" id="custom-duration" min="5" max="60" step="5" value="0"><small>0 = variable según intensidad</small></label>
+        <p class="consent-reminder">Cada idea es opcional. Pueden pasar siempre.</p><button class="button button-primary button-wide" id="custom-start">Guardar y jugar <span aria-hidden="true">→</span></button><button class="button button-text" data-go="setup-screen">Atrás</button>
+      </div>
+    </section>
+
+    <section class="screen game-screen" id="game-screen" aria-labelledby="game-title" hidden>
+      <header class="game-header"><a class="brand-small" href="#" id="home-link"><img src="assets/logo.svg" alt="" width="32" height="32"><span>DADOS <em>PARA DOS</em></span></a><button class="icon-button" id="settings-button" aria-label="Abrir configuración" title="Configuración">⚙</button></header>
+      <div class="game-content"><div class="round-label"><span id="round-label">RONDA 1</span><span class="round-line"></span><span id="mode-label">COQUETO</span></div>
+        <div class="turn-indicator"><div class="player-badge" id="player-one-badge"><span class="player-dot"></span><span id="player-one-display">Jugador 1</span></div><span class="vs-small">VS</span><div class="player-badge" id="player-two-badge"><span class="player-dot"></span><span id="player-two-display">Jugador 2</span></div></div>
+        <div class="turn-callout"><span>AHORA ES EL TURNO DE</span><strong id="current-player">Jugador 1</strong></div>
+        <h1 id="game-title" class="sr-only">Dados para Dos</h1>
+        <div class="dice-area" id="dice-area" aria-label="Dados de juego"><div class="die-wrap"><span class="die-caption">ACCIÓN</span><div class="die" id="action-die" role="img" aria-label="Dado de acción"><span class="die-value">✦</span></div></div><span class="plus-sign" aria-hidden="true">+</span><div class="die-wrap"><span class="die-caption">ZONA</span><div class="die" id="zone-die" role="img" aria-label="Dado de zona"><span class="die-value">✧</span></div></div></div>
+        <div class="result-card" id="result-card" aria-live="polite" hidden><div class="result-kicker" id="result-turn">TURNO DE</div><div class="result-pair"><div><span>ACCIÓN</span><strong id="action-result"></strong></div><span class="result-plus">·</span><div><span>ZONA</span><strong id="zone-result"></strong></div></div><div class="pose-result"><div class="pose-label">POSE</div><div id="pose-art" class="pose-art" role="img" aria-label="Ilustración estilizada de la pose"></div><strong id="pose-result"></strong></div><p class="duration-result" id="duration-result"></p><p class="result-sentence" id="result-sentence"></p><p class="pass-note">Solo si ambos quieren. Está bien pasar.</p></div>
+        <button class="button button-primary roll-button" id="roll-button"><span class="button-die" aria-hidden="true">⚄</span> Tirar los dados</button>
+        <p class="change-hint" id="change-hint" hidden>¿No te gusta el resultado? Cámbialo.</p>
+        <div class="result-actions" id="result-actions" hidden><button class="button button-done" id="done-button">✓ Hecho</button><button class="button button-secondary" id="reroll-button">↻ Cambiar</button><button class="button button-pass" id="pass-button">Pasar / No quiero hacer esto</button></div>
+        <p class="safety-line">Pueden parar o pasar en cualquier momento.</p>
+        <section class="history-panel" aria-labelledby="history-title"><div class="history-heading"><h2 id="history-title">Historial <span id="history-count">0</span></h2><button id="clear-history" class="clear-button">Borrar</button></div><ol id="history-list" class="history-list"><li class="empty-history">Sus momentos aparecerán aquí.</li></ol></section>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="how-dialog" class="settings-dialog how-dialog" aria-labelledby="how-title"><form method="dialog"><div class="dialog-heading"><div><div class="step-tag">ASÍ DE SIMPLE</div><h2 id="how-title">Cómo jugar</h2></div><button class="icon-button close-dialog" value="close" aria-label="Cerrar">×</button></div><ol class="how-list"><li>Elijan sus nombres y una intensidad.</li><li>Por turnos, tiren los dados y lean acción, zona, pose y duración.</li><li>Elijan <b>Hecho</b>, cambien la propuesta o pasen.</li><li>La siguiente persona toma el turno. Pasar siempre está bien.</li></ol><p class="quiet-copy">Las sugerencias son opcionales y el historial dura solo mientras esta página esté abierta.</p><button class="button button-primary button-wide" value="close">Entendido</button></form></dialog>
+  <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-title"><form method="dialog"><div class="dialog-heading"><div><div class="step-tag">AJUSTEN A SU GUSTO</div><h2 id="settings-title">Configuración</h2></div><button class="icon-button close-dialog" value="close" aria-label="Cerrar configuración">×</button></div>
+      <label class="field"><span>JUGADOR 1</span><input id="settings-player-one" maxlength="18"></label><label class="field"><span>JUGADOR 2</span><input id="settings-player-two" maxlength="18"></label>
+      <label class="toggle-row"><span>Sonido</span><input id="sound-toggle" type="checkbox"><span class="toggle-ui"></span></label><label class="toggle-row"><span>Vibración</span><input id="vibrate-toggle" type="checkbox"><span class="toggle-ui"></span></label><label class="toggle-row"><span>Animaciones</span><input id="animation-toggle" type="checkbox"><span class="toggle-ui"></span></label>
+      <label class="field"><span>INTENSIDAD</span><select id="settings-mode"><option value="coqueto">🔥 Coqueto</option><option value="picante">🔥🔥 Picante</option><option value="intenso">🔥🔥🔥 Intenso</option><option value="custom">A medida</option></select></label>
+      <label class="field"><span>DURACIÓN PERSONALIZADA · SEGUNDOS (0 = VARIABLE)</span><input id="settings-duration" type="number" min="0" max="60" step="5" value="0"></label>
+      <button class="button button-primary button-wide" id="save-settings" value="save">Guardar cambios</button><button class="button button-text reset-button" id="reset-settings" type="button">Restablecer configuración</button>
+    </form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="c4-watermark" aria-hidden="true">C4</div>
+</body>
+</html>
